@@ -32,6 +32,7 @@ body {
 /* Header */
 .header{text-align:center;padding:16px 0 8px;}
 .header h1{font-size:26px;background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2px;letter-spacing:2px;}
+.header .subtitle{font-size:12px;color:var(--light-text);}
 .user-bar{display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;color:var(--light-text);margin-top:2px;flex-wrap:wrap;}
 .user-name{font-weight:700;color:var(--purple);}
 .online-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 2s infinite;}
@@ -61,6 +62,7 @@ body {
 .btn-green{background:linear-gradient(135deg,var(--green),#43A047);box-shadow:0 4px 12px rgba(107,203,119,0.35);}
 .btn-purple{background:linear-gradient(135deg,var(--purple),#B388FF);box-shadow:0 4px 12px rgba(199,125,255,0.35);}
 .btn-orange{background:linear-gradient(135deg,var(--orange),#FF7043);box-shadow:0 4px 16px rgba(255,154,86,0.35);}
+.btn-gray{background:#999;box-shadow:0 4px 12px rgba(0,0,0,0.15);}
 .btn-block{display:block;width:100%;text-align:center;}
 .feedback{text-align:center;padding:12px;font-size:22px;font-weight:700;min-height:48px;transition:all 0.3s;}
 .feedback.correct{color:var(--green);}.feedback.wrong{color:var(--pink);}
@@ -83,8 +85,7 @@ body {
 .lb-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;position:sticky;top:0;background:#fff;z-index:1;padding-bottom:8px;}
 .leaderboard-table{width:100%;border-collapse:collapse;font-size:14px;}
 .leaderboard-table th{background:linear-gradient(135deg,var(--orange),#FF7043);color:#fff;padding:12px 6px;font-size:13px;font-weight:700;}
-.leaderboard-table th:first-child{border-radius:12px 0 0 0;}
-.leaderboard-table th:last-child{border-radius:0 12px 0 0;}
+.leaderboard-table th:first-child{border-radius:12px 0 0 0;}.leaderboard-table th:last-child{border-radius:0 12px 0 0;}
 .leaderboard-table td{padding:10px 6px;text-align:center;border-bottom:1px solid #F5E8F0;font-weight:600;}
 .leaderboard-table .rank-col{font-weight:800;font-size:16px;width:40px;}
 .leaderboard-table .name-col{text-align:left;padding-left:8px;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -94,6 +95,32 @@ body {
 .my-rank-card{background:linear-gradient(135deg,#FFF8E1,#FFF3E0);border:2px solid var(--orange);border-radius:16px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-around;text-align:center;flex-wrap:wrap;gap:8px;}
 .my-rank-card .my-val{font-size:24px;font-weight:800;color:var(--orange);}
 .my-rank-card .my-lbl{font-size:11px;color:var(--light-text);}
+
+/* ── 管理员后台 ── */
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+.admin-overview{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.admin-stat{background:#fff;border-radius:14px;padding:14px;text-align:center;border:2px solid #F0E0E8;}
+.admin-stat .astat-val{font-size:28px;font-weight:800;color:var(--purple);}
+.admin-stat .astat-lbl{font-size:11px;color:var(--light-text);margin-top:2px;}
+.admin-nav{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.admin-nav button{flex:1;min-width:60px;padding:10px 6px;border:2px solid #E8D5E0;border-radius:12px;background:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);color:var(--text);}
+.admin-nav button.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+.student-detail-row{cursor:pointer;transition:background 0.2s;}
+.student-detail-row:hover{background:#F5F0FF!important;}
+.detail-expanded{background:#FAF5FF;padding:12px;border-radius:0 0 12px 12px;display:none;}
+.detail-expanded.show{display:block;}
+.log-table{width:100%;font-size:12px;border-collapse:collapse;}
+.log-table th{background:#EDE7F6;padding:6px;text-align:center;font-size:11px;}
+.log-table td{padding:5px;text-align:center;border-bottom:1px solid #F0E8F5;}
+.log-table .log-correct{color:var(--green);font-weight:700;}
+.log-table .log-wrong{color:var(--pink);font-weight:700;}
+.csv-preview{background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:10px;font-size:11px;max-height:300px;overflow:auto;white-space:pre;font-family:monospace;margin:8px 0;}
+.admin-back{font-size:22px;cursor:pointer;padding:4px 8px;}
+.pw-dots{margin:8px 0;display:flex;gap:8px;justify-content:center;}
+.pw-dot{width:14px;height:14px;border-radius:50%;background:#E8D5E0;transition:all 0.2s;}
+.pw-dot.filled{background:var(--purple);transform:scale(1.2);}
+
 /* 动画 */
 .celebration{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
 .star{position:absolute;font-size:30px;animation:starFall 1.2s ease-out forwards;pointer-events:none;}
@@ -121,11 +148,26 @@ body {
   <div class="login-card">
     <div class="login-icon">🦊</div>
     <h2>欢迎来到数学乐园</h2>
-    <div class="login-sub">三年级下册 · 人教版 · 云端联网</div>
+    <div class="login-sub" id="login-subtitle">三年级下册 · 人教版 · 云端联网</div>
     <input type="text" id="login-name-input" placeholder="请输入你的名字" maxlength="10" autocomplete="off" inputmode="text">
     <div class="login-hint">输入姓名开始挑战<br>全班53人积分实时同步 🌐</div>
     <div class="login-status" id="login-status"></div>
     <button class="btn btn-orange btn-block" onclick="doLogin()" id="login-btn">🚀 进入数学乐园</button>
+  </div>
+</div>
+
+<!-- ═════ 管理员登录弹窗 ═════ -->
+<div class="login-overlay" id="admin-login-overlay" style="display:none;">
+  <div class="login-card">
+    <div class="login-icon">🔐</div>
+    <h2>管理员登录</h2>
+    <div class="login-sub">请输入管理密码</div>
+    <input type="password" id="admin-password-input" placeholder="输入密码" maxlength="20" autocomplete="off" inputmode="text">
+    <div class="login-status" id="admin-login-status"></div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-gray" onclick="closeAdminLogin()" style="flex:1;">返回</button>
+      <button class="btn btn-purple" onclick="adminLogin()" style="flex:2;">🔓 进入后台</button>
+    </div>
   </div>
 </div>
 
@@ -135,6 +177,7 @@ body {
 <div class="container" id="main-app" style="display:none;">
   <div class="header">
     <h1>🌟 数学乐园 🌟</h1>
+    <div class="subtitle" id="header-subtitle" style="font-size:12px;color:var(--light-text);">三年级下册 · 人教版</div>
     <div class="user-bar">
       <span>👤 <span class="user-name" id="display-name">--</span></span>
       <span class="online-dot" id="online-dot" title="已联网"></span>
@@ -143,10 +186,28 @@ body {
     </div>
   </div>
 
-  <div class="nav">
+  <div class="nav" id="main-nav">
     <button class="nav-btn n1 active" onclick="switchTab('mental')" id="nav-mental">🧮 口算</button>
     <button class="nav-btn n2" onclick="switchTab('word')" id="nav-word">📝 应用</button>
     <button class="nav-btn n3" onclick="switchTab('geo')" id="nav-geo">🔷 几何</button>
+  </div>
+
+  <!-- ═══ 管理员后台面板 ═══ -->
+  <div class="admin-panel" id="admin-panel">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h3 style="color:var(--purple);">🔐 教师后台</h3>
+        <button class="btn-sm" onclick="closeAdminPanel()">✕ 退出</button>
+      </div>
+      <div class="admin-overview" id="admin-overview"></div>
+      <div class="admin-nav" id="admin-nav">
+        <button class="active" onclick="adminShowTab('students')">👥 学生列表</button>
+        <button onclick="adminShowTab('activity')">📋 答题记录</button>
+        <button onclick="adminShowTab('export')">📥 导出数据</button>
+        <button onclick="adminChangePwd()">🔑 改密码</button>
+      </div>
+      <div id="admin-tab-content" style="max-height:60vh;overflow-y:auto;-webkit-overflow-scrolling:touch;"></div>
+    </div>
   </div>
 
   <!-- ═══ 口算大冒险 ═══ -->
@@ -158,11 +219,8 @@ body {
       </div>
       <div class="progress-bar"><div class="progress-fill" id="m-progress" style="width:0%"></div></div>
       <div class="question-row">
-        <span class="big-number" id="m-left">72</span>
-        <span class="operator" id="m-op">÷</span>
-        <span class="big-number" id="m-right">8</span>
-        <span class="operator">=</span>
-        <span style="font-size:36px;">?</span>
+        <span class="big-number" id="m-left">72</span><span class="operator" id="m-op">÷</span>
+        <span class="big-number" id="m-right">8</span><span class="operator">=</span><span style="font-size:36px;">?</span>
       </div>
       <div style="text-align:center;margin:12px 0;">
         <input type="number" class="answer-input" id="m-answer" placeholder="?" autocomplete="off" inputmode="numeric">
@@ -224,16 +282,24 @@ body {
 <div class="celebration" id="celebration"></div>
 
 <script>
-// ==================== 云端数据库配置 ====================
-// 使用 jsonblob.com 免费 JSON 存储（无需注册，开箱即用）
-const DB_URL = 'https://jsonblob.com/api/jsonBlob/019e006e-2b2d-7917-bdf1-50243d5167c1';
-let dbCache = null;        // 缓存的数据库
-let dbLastFetch = 0;       // 上次获取时间
-const DB_CACHE_MS = 3000;  // 缓存有效期3秒
+// ==================== 云端数据库 ====================
+const SCORE_DB = 'https://jsonblob.com/api/jsonBlob/019e006e-2b2d-7917-bdf1-50243d5167c1';
+const LOG_DB   = 'https://jsonblob.com/api/jsonBlob/019e009b-94dc-7b26-8d00-20ab29ae8500';
+let scoreCache=null, scoreLastFetch=0;
+const DB_CACHE_MS=3000;
+const ADMIN_PASSWORD_KEY='math_admin_password';
+let isAdminMode=false;
+
+// ==================== 管理员密码管理 ====================
+function getAdminPassword(){
+  return localStorage.getItem(ADMIN_PASSWORD_KEY)||'admin888';
+}
+function setAdminPassword(newPwd){
+  localStorage.setItem(ADMIN_PASSWORD_KEY,newPwd);
+}
 
 // ==================== 全局状态 ====================
-let studentName = '';
-let currentTab = 'mental';
+let studentName='',currentTab='mental';
 
 // ==================== Toast ====================
 function showToast(msg){
@@ -249,17 +315,8 @@ function doLogin(){
   studentName=name;
   const statusEl=document.getElementById('login-status');
   const btnEl=document.getElementById('login-btn');
-  statusEl.textContent='⏳ 正在连接云端...';btnEl.disabled=true;
-
-  // 测试云端连接
-  fetch(DB_URL).then(r=>r.json()).then(()=>{
-    statusEl.textContent='✅ 云端连接成功！';
-  }).catch(()=>{
-    statusEl.textContent='⚠️ 云端暂不可用，使用本地模式';
-  }).finally(()=>{
-    btnEl.disabled=false;
-    finishLogin(name);
-  });
+  statusEl.textContent='⏳ 连接云端...';btnEl.disabled=true;
+  fetch(SCORE_DB).then(r=>r.json()).then(()=>statusEl.textContent='✅ 连接成功！').catch(()=>statusEl.textContent='⚠️ 离线模式').finally(()=>{btnEl.disabled=false;finishLogin(name);});
 }
 
 function finishLogin(name){
@@ -278,377 +335,314 @@ function doLogout(){
     document.getElementById('login-name-input').value='';
     document.getElementById('login-name-input').focus();
     document.getElementById('login-status').textContent='';
+    if(isAdminMode)closeAdminPanel();
   }
+}
+
+// ==================== 管理员入口 ====================
+let subtitleClicks=0;
+document.addEventListener('DOMContentLoaded',()=>{
+  const sub=document.getElementById('login-subtitle');
+  if(sub){
+    sub.style.cursor='default';
+    sub.addEventListener('click',()=>{
+      subtitleClicks++;
+      if(subtitleClicks>=5){subtitleClicks=0;showAdminLogin();}
+      setTimeout(()=>{if(subtitleClicks>0)subtitleClicks=0;},2000);
+    });
+  }
+  // URL参数入口
+  if(location.search.includes('admin')){
+    setTimeout(()=>{
+      const saved=localStorage.getItem('math_student_name');
+      if(saved){studentName=saved;document.getElementById('login-name-input').value=saved;}
+      showAdminLogin();
+    },500);
+  }
+});
+
+function showAdminLogin(){
+  document.getElementById('admin-login-overlay').style.display='flex';
+  document.getElementById('admin-password-input').value='';
+  document.getElementById('admin-login-status').textContent='';
+  setTimeout(()=>document.getElementById('admin-password-input').focus(),300);
+}
+
+function closeAdminLogin(){
+  document.getElementById('admin-login-overlay').style.display='none';
+  if(!studentName){document.getElementById('login-overlay').style.display='flex';}
+}
+
+function adminLogin(){
+  const pwd=document.getElementById('admin-password-input').value.trim();
+  if(pwd===getAdminPassword()){
+    document.getElementById('admin-login-overlay').style.display='none';
+    isAdminMode=true;
+    if(!studentName){
+      studentName='[管理员]';
+      document.getElementById('login-overlay').style.display='none';
+      document.getElementById('main-app').style.display='block';
+      document.getElementById('display-name').textContent=studentName;
+    }
+    openAdminPanel();
+  }else{
+    document.getElementById('admin-login-status').textContent='❌ 密码错误';
+    document.getElementById('admin-password-input').value='';
+  }
+}
+
+function openAdminPanel(){
+  document.getElementById('admin-panel').classList.add('active');
+  document.querySelectorAll('#main-nav .nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  if(mState.roundActive){mState.roundActive=false;if(mState.timerInterval)clearInterval(mState.timerInterval);}
+  loadAdminDashboard();
+}
+
+function closeAdminPanel(){
+  isAdminMode=false;
+  document.getElementById('admin-panel').classList.remove('active');
+  switchTab('mental');
+}
+
+function adminChangePwd(){
+  const np=prompt('请输入新密码（至少4位）：');
+  if(np&&np.length>=4){
+    setAdminPassword(np);
+    showToast('✅ 密码已更新！请记住：'+np);
+  }else if(np){
+    showToast('❌ 密码至少4位');
+  }
+}
+
+// ==================== 管理员仪表盘 ====================
+let adminCurrentTab='students';
+let adminAllLogs=[];
+let adminAllScores=[];
+
+async function loadAdminDashboard(){
+  // 加载分数和日志
+  try{
+    const scoreRes=await fetch(SCORE_DB);const scoreData=await scoreRes.json();
+    adminAllScores=[];
+    for(const[n,d]of Object.entries(scoreData.students||{})){
+      adminAllScores.push({name:n,...d});
+    }
+    adminAllScores.sort((a,b)=>(b.mental_best||0)+(b.word_correct||0)+(b.geo_correct||0)-(a.mental_best||0)-(a.word_correct||0)-(a.geo_correct||0));
+  }catch(e){adminAllScores=[];}
+
+  try{
+    const logRes=await fetch(LOG_DB);const logData=await logRes.json();
+    adminAllLogs=logData.logs||[];
+    adminAllLogs.sort((a,b)=>b.ts-a.ts);
+  }catch(e){adminAllLogs=[];}
+
+  // 概览统计
+  const today=new Date().toDateString();
+  const todayLogs=adminAllLogs.filter(l=>new Date(l.ts).toDateString()===today);
+  const totalAnswers=adminAllLogs.length;
+  const totalCorrect=adminAllLogs.filter(l=>l.correct).length;
+  const overview=document.getElementById('admin-overview');
+  overview.innerHTML=
+    '<div class="admin-stat"><div class="astat-val">'+adminAllScores.length+'</div><div class="astat-lbl">👥 参与学生</div></div>'+
+    '<div class="admin-stat"><div class="astat-val">'+totalAnswers+'</div><div class="astat-lbl">📝 总答题数</div></div>'+
+    '<div class="admin-stat"><div class="astat-val">'+(totalAnswers>0?Math.round(totalCorrect/totalAnswers*100):0)+'%</div><div class="astat-lbl">🎯 总正确率</div></div>'+
+    '<div class="admin-stat"><div class="astat-val">'+todayLogs.length+'</div><div class="astat-lbl">📅 今日答题</div></div>';
+
+  adminShowTab(adminCurrentTab);
+}
+
+function adminShowTab(tab){
+  adminCurrentTab=tab;
+  const navBtns=document.querySelectorAll('#admin-nav button');
+  navBtns.forEach(b=>b.classList.remove('active'));
+  if(tab==='students')navBtns[0].classList.add('active');
+  if(tab==='activity')navBtns[1].classList.add('active');
+  if(tab==='export')navBtns[2].classList.add('active');
+  if(tab==='changepwd')navBtns[3].classList.add('active');
+
+  const content=document.getElementById('admin-tab-content');
+
+  if(tab==='students'){
+    if(adminAllScores.length===0){content.innerHTML='<div class="lb-empty">还没有学生数据</div>';return;}
+    let html='<table class="leaderboard-table"><thead><tr><th>排名</th><th>姓名</th><th>🧮口算</th><th>📝应用</th><th>🔷几何</th><th>⭐总分</th><th>详情</th></tr></thead><tbody>';
+    adminAllScores.forEach((s,i)=>{
+      const total=(s.mental_best||0)+(s.word_correct||0)+(s.geo_correct||0);
+      const sLogs=adminAllLogs.filter(l=>l.student===s.name);
+      const sCorrect=sLogs.filter(l=>l.correct).length;
+      html+='<tr class="student-detail-row" onclick="toggleStudentDetail(\''+escHtml(s.name)+'\',this)" style="cursor:pointer;">'+
+        '<td class="rank-col">'+(i+1)+'</td><td class="name-col">'+escHtml(s.name)+'</td>'+
+        '<td>'+(s.mental_best||0)+'</td><td>'+(s.word_correct||0)+'</td><td>'+(s.geo_correct||0)+'</td>'+
+        '<td class="total-col">'+total+'</td><td>🔽</td></tr>'+
+        '<tr class="detail-expanded" id="detail-'+escHtml(s.name).replace(/\s/g,'_')+'"><td colspan="7">'+
+        '<div style="font-weight:700;margin-bottom:4px;">📊 '+escHtml(s.name)+' 答题详情</div>'+
+        '<div style="font-size:12px;color:var(--light-text);margin-bottom:4px;">总答题：'+sLogs.length+' | 正确：'+sCorrect+' | 正确率：'+(sLogs.length>0?Math.round(sCorrect/sLogs.length*100):0)+'%</div>'+
+        (sLogs.length>0?renderLogTable(sLogs.slice(0,20)):'<div style="font-size:12px;color:#999;">暂无答题记录</div>')+
+        '</td></tr>';
+    });
+    html+='</tbody></table>';
+    content.innerHTML=html;
+  }else if(tab==='activity'){
+    if(adminAllLogs.length===0){content.innerHTML='<div class="lb-empty">还没有答题记录</div>';return;}
+    content.innerHTML='<div style="font-weight:700;margin-bottom:8px;">📋 最近答题记录（最新200条）</div>'+renderLogTable(adminAllLogs.slice(0,200));
+  }else if(tab==='export'){
+    const csv=generateCSV();
+    content.innerHTML='<div style="font-weight:700;margin-bottom:8px;">📥 数据导出（CSV格式）</div>'+
+      '<div class="csv-preview">'+escHtml(csv.slice(0,3000))+(csv.length>3000?'\n... (共'+csv.split('\n').length+'行)':'')+'</div>'+
+      '<button class="btn btn-green btn-block" onclick="downloadCSV()">📥 下载CSV文件</button>'+
+      '<button class="btn btn-orange btn-block" style="margin-top:6px;" onclick="resetAllData()">🗑️ 清空所有数据</button>';
+  }
+}
+
+function toggleStudentDetail(name,row){
+  const detailRow=row.nextElementSibling;
+  if(detailRow&&detailRow.classList.contains('detail-expanded')){
+    detailRow.classList.toggle('show');
+    row.querySelector('td:last-child').textContent=detailRow.classList.contains('show')?'🔼':'🔽';
+  }
+}
+
+function renderLogTable(logs){
+  let h='<table class="log-table"><thead><tr><th>时间</th><th>板块</th><th>题目</th><th>回答</th><th>结果</th></tr></thead><tbody>';
+  logs.forEach(l=>{
+    const d=new Date(l.ts);
+    const time=d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+    const typeLabel={mental:'🧮口算',word:'📝应用',geo:'🔷几何'}[l.type]||l.type;
+    h+='<tr><td>'+d.getMonth()+1+'/'+d.getDate()+' '+time+'</td><td>'+typeLabel+'</td><td>'+escHtml((l.question||'').slice(0,30))+'</td><td>'+l.userAnswer+'</td><td class="'+(l.correct?'log-correct':'log-wrong')+'">'+(l.correct?'✅':'❌ '+l.correctAnswer)+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  return h;
+}
+
+function generateCSV(){
+  let csv='姓名,板块,题目,学生答案,正确答案,是否正确,时间\n';
+  adminAllLogs.forEach(l=>{
+    const typeLabel={mental:'口算',word:'应用题',geo:'几何'}[l.type]||l.type;
+    csv+='"'+l.student+'","'+typeLabel+'","'+(l.question||'').replace(/"/g,'""')+'","'+l.userAnswer+'","'+l.correctAnswer+'","'+(l.correct?'正确':'错误')+'","'+new Date(l.ts).toLocaleString('zh-CN')+'"\n';
+  });
+  return csv;
+}
+
+function downloadCSV(){
+  const csv=generateCSV();
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='数学乐园答题数据_'+new Date().toISOString().slice(0,10)+'.csv';
+  a.click();URL.revokeObjectURL(url);
+  showToast('✅ CSV已下载');
+}
+
+async function resetAllData(){
+  if(!confirm('⚠️ 确定要清空所有学生数据和答题记录吗？此操作不可恢复！'))return;
+  if(!confirm('再次确认：清空所有数据？'))return;
+  try{
+    await fetch(SCORE_DB,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'math-grade3',students:{}})});
+    await fetch(LOG_DB,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'math-grade3-activity',logs:[]})});
+    scoreCache=null;adminAllScores=[];adminAllLogs=[];
+    showToast('✅ 数据已清空');
+    loadAdminDashboard();
+  }catch(e){showToast('❌ 清空失败');}
 }
 
 // ==================== 云端读写 ====================
-async function fetchDB(){
-  const now=Date.now();
-  if(dbCache && (now-dbLastFetch)<DB_CACHE_MS) return dbCache;
-  try{
-    const res=await fetch(DB_URL);
-    dbCache=await res.json();
-    dbLastFetch=now;
-    if(!dbCache.students) dbCache.students={};
-    return dbCache;
-  }catch(e){return {students:{}};}
-}
+async function fetchDB(){const now=Date.now();if(scoreCache&&(now-scoreLastFetch)<DB_CACHE_MS)return scoreCache;try{const res=await fetch(SCORE_DB);scoreCache=await res.json();scoreLastFetch=now;if(!scoreCache.students)scoreCache.students={};return scoreCache;}catch(e){return{students:{}};}}
 
 async function saveScoreToCloud(type,value){
-  if(!studentName) return;
+  if(!studentName||studentName==='[管理员]')return;
   try{
-    // 先获取最新数据
-    const db=await fetch(DB_URL).then(r=>r.json());
-    if(!db.students) db.students={};
-    if(!db.students[studentName]) db.students[studentName]={mental_best:0,word_correct:0,geo_correct:0};
+    const db=await fetch(SCORE_DB).then(r=>r.json());
+    if(!db.students)db.students={};
+    if(!db.students[studentName])db.students[studentName]={mental_best:0,word_correct:0,geo_correct:0};
     if(value>db.students[studentName][type]){
       db.students[studentName][type]=value;
-      await fetch(DB_URL,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(db)});
-      dbCache=db;dbLastFetch=Date.now();
+      await fetch(SCORE_DB,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(db)});
+      scoreCache=db;scoreLastFetch=Date.now();
     }
-  }catch(e){console.warn('云端同步失败:',e);}
+  }catch(e){console.warn('同步失败:',e);}
+}
+
+// 活动日志记录
+async function logActivity(type,question,userAnswer,correctAnswer,isCorrect){
+  if(!studentName||studentName==='[管理员]')return;
+  const entry={student:studentName,type,question,userAnswer,correctAnswer,correct:isCorrect,ts:Date.now()};
+  try{
+    const db=await fetch(LOG_DB).then(r=>r.json());
+    if(!db.logs)db.logs=[];
+    db.logs.push(entry);
+    // 最多保留5000条日志
+    if(db.logs.length>5000)db.logs=db.logs.slice(-5000);
+    await fetch(LOG_DB,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(db)});
+  }catch(e){console.warn('日志记录失败:',e);}
 }
 
 async function loadAllScores(){
-  try{
-    const db=await fetchDB();
-    const list=[];
-    for(const[name,data]of Object.entries(db.students||{})){
-      const mb=data.mental_best||0, wc=data.word_correct||0, gc=data.geo_correct||0;
-      list.push({name,mental_best:mb,word_correct:wc,geo_correct:gc,total:mb+wc+gc});
-    }
-    list.sort((a,b)=>b.total-a.total);
-    list.forEach((e,i)=>e.rank=i+1);
-    return list;
-  }catch(e){return [];}
+  try{const db=await fetchDB();const list=[];for(const[n,d]of Object.entries(db.students||{})){const mb=d.mental_best||0,wc=d.word_correct||0,gc=d.geo_correct||0;list.push({name:n,mental_best:mb,word_correct:wc,geo_correct:gc,total:mb+wc+gc});}list.sort((a,b)=>b.total-a.total);list.forEach((e,i)=>e.rank=i+1);return list;}catch(e){return[];}
 }
 
-// 本地兜底
 function getLocal(k){return studentName?parseInt(localStorage.getItem('math_'+k+'_'+studentName)||'0'):0;}
-function saveLocal(k,v){
-  if(!studentName)return;
-  const full='math_'+k+'_'+studentName;
-  const prev=parseInt(localStorage.getItem(full)||'0');
-  if(v>prev){localStorage.setItem(full,v);saveScoreToCloud(k,v);}
-}
+function saveLocal(k,v){if(!studentName||studentName==='[管理员]')return;const full='math_'+k+'_'+studentName;const prev=parseInt(localStorage.getItem(full)||'0');if(v>prev){localStorage.setItem(full,v);saveScoreToCloud(k,v);}}
 
 // ==================== 庆祝动画 ====================
-function spawn(emoji,count){
-  const c=document.getElementById('celebration');
-  for(let i=0;i<count;i++){
-    const el=document.createElement('span');el.className='star';el.textContent=emoji;
-    el.style.left=Math.random()*90+5+'%';el.style.top=-(Math.random()*60+10)+'px';
-    el.style.animationDuration=(Math.random()*1+1)+'s';
-    el.style.animationDelay=Math.random()*0.3+'s';
-    el.style.fontSize=(Math.random()*20+22)+'px';
-    c.appendChild(el);setTimeout(()=>el.remove(),1600);
-  }
-}
-function starBurst(){spawn('⭐',15);}function confettiBurst(){spawn('🎉',12);}
-function sparkleBurst(){spawn('✨',10);}function cheerBurst(){spawn('💪',5);}
+function spawn(emoji,count){const c=document.getElementById('celebration');for(let i=0;i<count;i++){const el=document.createElement('span');el.className='star';el.textContent=emoji;el.style.left=Math.random()*90+5+'%';el.style.top=-(Math.random()*60+10)+'px';el.style.animationDuration=(Math.random()*1+1)+'s';el.style.animationDelay=Math.random()*0.3+'s';el.style.fontSize=(Math.random()*20+22)+'px';c.appendChild(el);setTimeout(()=>el.remove(),1600);}}
+function starBurst(){spawn('⭐',15);}function confettiBurst(){spawn('🎉',12);}function sparkleBurst(){spawn('✨',10);}function cheerBurst(){spawn('💪',5);}
 
 // ==================== 切换板块 ====================
 function switchTab(name){
+  if(isAdminMode)return;
   currentTab=name;
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#main-nav .nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('section-'+name).classList.add('active');
   document.getElementById('nav-'+name).classList.add('active');
   if(name==='geo'&&!window._geoInit){nextGeoProblem();window._geoInit=true;}
   if(name==='mental'&&!window._mentalInit){startMental();window._mentalInit=true;}
 }
 
-// ==================== 积分榜弹窗 ====================
+// ==================== 积分榜 ====================
 async function showLeaderboard(){
-  const overlay=document.createElement('div');
-  overlay.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:10001;display:flex;align-items:center;justify-content:center;';
-  overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove();});
-
-  const card=document.createElement('div');
-  card.style.cssText='background:#fff;border-radius:20px;padding:20px 16px;max-width:580px;width:94%;max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.2);-webkit-overflow-scrolling:touch;';
-  card.addEventListener('click',function(e){e.stopPropagation();});
-  card.innerHTML='<div class="lb-header"><h3 style="font-size:20px;color:#FF9A56;">🏆 全 班 积 分 榜</h3><button style="background:none;border:none;font-size:24px;cursor:pointer;color:#999;padding:8px;" onclick="this.closest(\'[style]\').parentElement.remove()">✕</button></div><div style="text-align:center;padding:30px;color:#999;">⏳ 加载中...</div>';
-
-  overlay.appendChild(card);document.body.appendChild(overlay);
-
-  const list=await loadAllScores();
-  card.querySelector('div:last-child').remove();
-
-  // 我的排名
+  const overlay=document.createElement('div');overlay.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);z-index:10001;display:flex;align-items:center;justify-content:center;';overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove();});
+  const card=document.createElement('div');card.style.cssText='background:#fff;border-radius:20px;padding:20px 16px;max-width:580px;width:94%;max-height:85vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.2);-webkit-overflow-scrolling:touch;';card.addEventListener('click',function(e){e.stopPropagation();});card.innerHTML='<div class="lb-header"><h3 style="font-size:20px;color:#FF9A56;">🏆 全 班 积 分 榜</h3><button style="background:none;border:none;font-size:24px;cursor:pointer;color:#999;padding:8px;" onclick="this.closest(\'[style]\').parentElement.remove()">✕</button></div><div style="text-align:center;padding:30px;color:#999;">⏳ 加载中...</div>';overlay.appendChild(card);document.body.appendChild(overlay);
+  const list=await loadAllScores();card.querySelector('div:last-child').remove();
   const me=list.find(e=>e.name===studentName);
-  if(me){
-    const mc=document.createElement('div');mc.className='my-rank-card';
-    mc.innerHTML='<div class="my-rank-item"><div class="my-lbl">🏅 排名</div><div class="my-val">第'+me.rank+'名</div></div>'+
-      '<div class="my-rank-item"><div class="my-lbl">🧮 口算</div><div class="my-val">'+me.mental_best+'/10</div></div>'+
-      '<div class="my-rank-item"><div class="my-lbl">📝 应用</div><div class="my-val">'+me.word_correct+'</div></div>'+
-      '<div class="my-rank-item"><div class="my-lbl">🔷 几何</div><div class="my-val">'+me.geo_correct+'</div></div>'+
-      '<div class="my-rank-item"><div class="my-lbl">⭐ 总分</div><div class="my-val" style="color:#FF6B9D;">'+me.total+'</div></div>';
-    card.appendChild(mc);
-  }
-
-  if(list.length===0){
-    const empty=document.createElement('div');empty.className='lb-empty';
-    empty.textContent='还没有人参与挑战，快来当第一名吧！🚀';card.appendChild(empty);
-  }else{
-    const table=document.createElement('table');table.className='leaderboard-table';
-    table.innerHTML='<thead><tr><th>排名</th><th>姓名</th><th>🧮</th><th>📝</th><th>🔷</th><th>⭐总分</th></tr></thead><tbody></tbody>';
-    const tbody=table.querySelector('tbody');
-    for(const e of list){
-      const isMe=e.name===studentName;
-      let rankH;if(e.rank===1)rankH='🥇';else if(e.rank===2)rankH='🥈';else if(e.rank===3)rankH='🥉';else rankH=e.rank;
-      const tr=document.createElement('tr');if(isMe)tr.className='highlight-row';
-      tr.innerHTML='<td class="rank-col">'+rankH+'</td><td class="name-col">'+escHtml(e.name)+(isMe?' ⭐':'')+'</td><td>'+e.mental_best+'</td><td>'+e.word_correct+'</td><td>'+e.geo_correct+'</td><td class="total-col">'+e.total+'</td>';
-      tbody.appendChild(tr);
-    }
-    card.appendChild(table);
-  }
-
-  const footer=document.createElement('div');
-  footer.style.cssText='text-align:center;margin-top:12px;';
-  footer.innerHTML='<button class="btn btn-orange btn-block" id="lb-refresh-btn">🔄 刷新排行榜</button><div style="font-size:12px;color:#aaa;margin-top:6px;">🌐 云端实时同步 · 全班联网</div>';
-  footer.querySelector('#lb-refresh-btn').addEventListener('click',function(){this.textContent='刷新中...';this.disabled=true;showLeaderboard();});
-  card.appendChild(footer);
+  if(me){const mc=document.createElement('div');mc.className='my-rank-card';mc.innerHTML='<div class="my-rank-item"><div class="my-lbl">🏅 排名</div><div class="my-val">第'+me.rank+'名</div></div><div class="my-rank-item"><div class="my-lbl">🧮 口算</div><div class="my-val">'+me.mental_best+'/10</div></div><div class="my-rank-item"><div class="my-lbl">📝 应用</div><div class="my-val">'+me.word_correct+'</div></div><div class="my-rank-item"><div class="my-lbl">🔷 几何</div><div class="my-val">'+me.geo_correct+'</div></div><div class="my-rank-item"><div class="my-lbl">⭐ 总分</div><div class="my-val" style="color:#FF6B9D;">'+me.total+'</div></div>';card.appendChild(mc);}
+  if(list.length===0){const empty=document.createElement('div');empty.className='lb-empty';empty.textContent='还没有人参与挑战，快来当第一名吧！🚀';card.appendChild(empty);}else{const table=document.createElement('table');table.className='leaderboard-table';table.innerHTML='<thead><tr><th>排名</th><th>姓名</th><th>🧮</th><th>📝</th><th>🔷</th><th>⭐总分</th></tr></thead><tbody></tbody>';const tbody=table.querySelector('tbody');for(const e of list){const isMe=e.name===studentName;let rankH;if(e.rank===1)rankH='🥇';else if(e.rank===2)rankH='🥈';else if(e.rank===3)rankH='🥉';else rankH=e.rank;const tr=document.createElement('tr');if(isMe)tr.className='highlight-row';tr.innerHTML='<td class="rank-col">'+rankH+'</td><td class="name-col">'+escHtml(e.name)+(isMe?' ⭐':'')+'</td><td>'+e.mental_best+'</td><td>'+e.word_correct+'</td><td>'+e.geo_correct+'</td><td class="total-col">'+e.total+'</td>';tbody.appendChild(tr);}card.appendChild(table);}
+  const footer=document.createElement('div');footer.style.cssText='text-align:center;margin-top:12px;';footer.innerHTML='<button class="btn btn-orange btn-block" id="lb-refresh-btn">🔄 刷新排行榜</button><div style="font-size:12px;color:#aaa;margin-top:6px;">🌐 云端实时同步 · 全班联网</div>';footer.querySelector('#lb-refresh-btn').addEventListener('click',function(){this.textContent='刷新中...';this.disabled=true;showLeaderboard();});card.appendChild(footer);
 }
 
 function escHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 
 // ==================== 初始化 ====================
 let _init=false;
-function initApp(){
-  if(_init)return;_init=true;
-  // 从云端恢复分数
-  fetchDB().then(db=>{
-    if(db.students&&db.students[studentName]){
-      const d=db.students[studentName];
-      if(d.mental_best>0)saveLocal('mental_best',d.mental_best);
-      if(d.word_correct>0){wState.correctCount=d.word_correct;document.getElementById('w-correct-count').textContent=d.word_correct;}
-      if(d.geo_correct>0){gState.correctCount=d.geo_correct;document.getElementById('g-correct-count').textContent=d.geo_correct;}
-    }
-  }).catch(()=>{});
-  startMental();window._mentalInit=true;
-}
+function initApp(){if(_init)return;_init=true;fetchDB().then(db=>{if(db.students&&db.students[studentName]){const d=db.students[studentName];if(d.mental_best>0)saveLocal('mental_best',d.mental_best);if(d.word_correct>0){wState.correctCount=d.word_correct;document.getElementById('w-correct-count').textContent=d.word_correct;}if(d.geo_correct>0){gState.correctCount=d.geo_correct;document.getElementById('g-correct-count').textContent=d.geo_correct;}}}).catch(()=>{});startMental();window._mentalInit=true;}
 
-// 自动登录
-(function(){
-  const saved=localStorage.getItem('math_student_name');
-  if(saved){studentName=saved;document.getElementById('login-name-input').value=saved;doLogin();}
-  else{document.getElementById('login-overlay').style.display='flex';document.getElementById('login-name-input').focus();}
-})();
-
+(function(){const saved=localStorage.getItem('math_student_name');if(saved){studentName=saved;document.getElementById('login-name-input').value=saved;doLogin();}else{document.getElementById('login-overlay').style.display='flex';document.getElementById('login-name-input').focus();}})();
 document.getElementById('login-name-input').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+document.getElementById('admin-password-input').addEventListener('keydown',function(e){if(e.key==='Enter')adminLogin();});
 
 // ==================== 口算大冒险 ====================
-let mState={questions:[],currentIndex:0,correct:0,startTime:0,timerInterval:null,answered:false,roundActive:false};
-
-function genQ(){
-  const qs=[];
-  const types=[
-    ()=>{const d=[2,3,4,5,6,7,8,9][Math.random()*8|0],q=Math.random()*8+2|0;return{left:d*q,op:'÷',right:d,answer:q};},
-    ()=>{const d=[2,3,4,5][Math.random()*4|0],b=Math.random()*9+1|0,s=[10,100][Math.random()*2|0];return{left:b*d*s,op:'÷',right:d,answer:b*s};},
-    ()=>{const a=Math.random()*90+10|0,b=[10,20,30,40,50][Math.random()*5|0];return{left:a,op:'×',right:b,answer:a*b};},
-    ()=>{const a=(Math.random()*9+1|0)*10,b=(Math.random()*9+1|0)*10;return{left:a,op:'×',right:b,answer:a*b};},
-    ()=>{const a=(Math.random()*90+10)/10,b=(Math.random()*50+1)/10;return{left:a.toFixed(1),op:'+',right:b.toFixed(1),answer:+(a+b).toFixed(1)};},
-    ()=>{let a=(Math.random()*90+20)/10,b=(Math.random()*(a*10-1)+1)/10;return{left:a.toFixed(1),op:'−',right:b.toFixed(1),answer:+(a-b).toFixed(1)};},
-  ];
-  const idxs=[0,1,2,3,4,5];for(let i=6;i<10;i++)idxs.push(Math.random()*6|0);
-  for(let i=idxs.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[idxs[i],idxs[j]]=[idxs[j],idxs[i]];}
-  for(let i=0;i<10;i++)qs.push(types[idxs[i]]());return qs;
-}
-
-function startMental(){
-  if(mState.timerInterval)clearInterval(mState.timerInterval);
-  mState={questions:genQ(),currentIndex:0,correct:0,startTime:Date.now(),timerInterval:null,answered:false,roundActive:true};
-  window._mentalInit=true;
-  document.getElementById('m-result-card').style.display='none';
-  document.getElementById('m-feedback').textContent='';document.getElementById('m-feedback').className='feedback';
-  document.getElementById('m-submit-btn').disabled=false;document.getElementById('m-answer').disabled=false;
-  document.getElementById('m-answer').value='';document.getElementById('m-best-hint').textContent='';
-  setTimeout(()=>document.getElementById('m-answer').focus(),100);
-  mState.timerInterval=setInterval(()=>{
-    if(!mState.roundActive)return;const t=Math.floor((Date.now()-mState.startTime)/1000);
-    const el=document.getElementById('m-timer');el.textContent='⏱ '+t+'s';el.classList.toggle('warning',t>60);
-  },1000);
-  showMQ();
-}
-
-function showMQ(){
-  const q=mState.questions[mState.currentIndex];
-  document.getElementById('m-left').textContent=q.left;
-  document.getElementById('m-op').textContent=q.op;
-  document.getElementById('m-right').textContent=q.right;
-  document.getElementById('mq-round').textContent=mState.currentIndex+1;
-  document.getElementById('m-progress').style.width=(mState.currentIndex*10)+'%';
-  document.getElementById('m-feedback').textContent='';document.getElementById('m-feedback').className='feedback';
-  document.getElementById('m-answer').value='';
-  document.getElementById('m-answer').disabled=false;document.getElementById('m-submit-btn').disabled=false;
-  mState.answered=false;setTimeout(()=>document.getElementById('m-answer').focus(),50);
-}
-
-function checkMental(){
-  if(!mState.roundActive||mState.answered)return;
-  const input=document.getElementById('m-answer').value.trim();if(input==='')return;
-  const ua=parseFloat(input);
-  if(isNaN(ua)){document.getElementById('m-feedback').textContent='请输入数字哦～';document.getElementById('m-feedback').className='feedback wrong';return;}
-  const q=mState.questions[mState.currentIndex];const ok=ua===q.answer;mState.answered=true;
-  document.getElementById('m-answer').disabled=true;document.getElementById('m-submit-btn').disabled=true;
-  const fb=document.getElementById('m-feedback');
-  if(ok){mState.correct++;fb.textContent='✅ 太棒了！答对啦！';fb.className='feedback correct bounce-in';starBurst();}
-  else{fb.textContent='❌ 不对哦～答案是 '+q.answer+'，加油！';fb.className='feedback wrong bounce-in';cheerBurst();}
-  document.getElementById('m-progress').style.width=((mState.currentIndex+1)*10)+'%';
-  setTimeout(()=>{mState.currentIndex++;if(mState.currentIndex>=10)finishMR();else showMQ();},1200);
-}
-
-function finishMR(){
-  mState.roundActive=false;if(mState.timerInterval)clearInterval(mState.timerInterval);
-  const elapsed=Math.floor((Date.now()-mState.startTime)/1000);
-  document.getElementById('m-score').textContent=mState.correct;
-  document.getElementById('m-time').textContent=elapsed+'s';
-  document.getElementById('m-accuracy').textContent=Math.round(mState.correct/10*100)+'%';
-  document.getElementById('m-feedback').textContent='';document.getElementById('m-feedback').className='feedback';
-  document.getElementById('m-answer').disabled=true;document.getElementById('m-submit-btn').disabled=true;
-  document.getElementById('m-progress').style.width='100%';document.getElementById('m-timer').classList.remove('warning');
-  document.getElementById('m-result-card').style.display='block';
-  const emoji=document.getElementById('m-result-emoji'),text=document.getElementById('m-result-text');
-  if(mState.correct===10){emoji.textContent='🏆';text.textContent='满分！口算大王！';confettiBurst();setTimeout(confettiBurst,600);}
-  else if(mState.correct>=8){emoji.textContent='🎉';text.textContent='非常棒！继续加油！';starBurst();}
-  else if(mState.correct>=6){emoji.textContent='😊';text.textContent='还不错，再练练会更好！';sparkleBurst();}
-  else{emoji.textContent='💪';text.textContent='别灰心，多练习就进步！';cheerBurst();}
-  const prev=getLocal('mental_best');
-  if(mState.correct>prev){saveLocal('mental_best',mState.correct);document.getElementById('m-best-hint').textContent='🎊 新纪录！云端已同步～';}
-  else{document.getElementById('m-best-hint').textContent='历史最佳：'+prev+'/10';}
-}
-
+let mState={questions:[],currentIndex:0,correct:0,startTime:0,timerInterval:null,answered:false,roundActive:false,currentQ:null};
+function genQ(){const qs=[];const types=[()=>{const d=[2,3,4,5,6,7,8,9][Math.random()*8|0],q=Math.random()*8+2|0;return{left:d*q,op:'÷',right:d,answer:q};},()=>{const d=[2,3,4,5][Math.random()*4|0],b=Math.random()*9+1|0,s=[10,100][Math.random()*2|0];return{left:b*d*s,op:'÷',right:d,answer:b*s};},()=>{const a=Math.random()*90+10|0,b=[10,20,30,40,50][Math.random()*5|0];return{left:a,op:'×',right:b,answer:a*b};},()=>{const a=(Math.random()*9+1|0)*10,b=(Math.random()*9+1|0)*10;return{left:a,op:'×',right:b,answer:a*b};},()=>{const a=(Math.random()*90+10)/10,b=(Math.random()*50+1)/10;return{left:a.toFixed(1),op:'+',right:b.toFixed(1),answer:+(a+b).toFixed(1)};},()=>{let a=(Math.random()*90+20)/10,b=(Math.random()*(a*10-1)+1)/10;return{left:a.toFixed(1),op:'−',right:b.toFixed(1),answer:+(a-b).toFixed(1)};}];const idxs=[0,1,2,3,4,5];for(let i=6;i<10;i++)idxs.push(Math.random()*6|0);for(let i=idxs.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[idxs[i],idxs[j]]=[idxs[j],idxs[i]];}for(let i=0;i<10;i++)qs.push(types[idxs[i]]());return qs;}
+function startMental(){if(mState.timerInterval)clearInterval(mState.timerInterval);mState={questions:genQ(),currentIndex:0,correct:0,startTime:Date.now(),timerInterval:null,answered:false,roundActive:true,currentQ:null};window._mentalInit=true;document.getElementById('m-result-card').style.display='none';document.getElementById('m-feedback').textContent='';document.getElementById('m-feedback').className='feedback';document.getElementById('m-submit-btn').disabled=false;document.getElementById('m-answer').disabled=false;document.getElementById('m-answer').value='';document.getElementById('m-best-hint').textContent='';setTimeout(()=>document.getElementById('m-answer').focus(),100);mState.timerInterval=setInterval(()=>{if(!mState.roundActive)return;const t=Math.floor((Date.now()-mState.startTime)/1000);const el=document.getElementById('m-timer');el.textContent='⏱ '+t+'s';el.classList.toggle('warning',t>60);},1000);showMQ();}
+function showMQ(){const q=mState.questions[mState.currentIndex];mState.currentQ=q;document.getElementById('m-left').textContent=q.left;document.getElementById('m-op').textContent=q.op;document.getElementById('m-right').textContent=q.right;document.getElementById('mq-round').textContent=mState.currentIndex+1;document.getElementById('m-progress').style.width=(mState.currentIndex*10)+'%';document.getElementById('m-feedback').textContent='';document.getElementById('m-feedback').className='feedback';document.getElementById('m-answer').value='';document.getElementById('m-answer').disabled=false;document.getElementById('m-submit-btn').disabled=false;mState.answered=false;setTimeout(()=>document.getElementById('m-answer').focus(),50);}
+function checkMental(){if(!mState.roundActive||mState.answered)return;const input=document.getElementById('m-answer').value.trim();if(input==='')return;const ua=parseFloat(input);if(isNaN(ua)){document.getElementById('m-feedback').textContent='请输入数字哦～';document.getElementById('m-feedback').className='feedback wrong';return;}const q=mState.currentQ||mState.questions[mState.currentIndex];const ok=ua===q.answer;mState.answered=true;const qText=q.left+' '+q.op+' '+q.right;logActivity('mental',qText,String(ua),String(q.answer),ok);document.getElementById('m-answer').disabled=true;document.getElementById('m-submit-btn').disabled=true;const fb=document.getElementById('m-feedback');if(ok){mState.correct++;fb.textContent='✅ 太棒了！答对啦！';fb.className='feedback correct bounce-in';starBurst();}else{fb.textContent='❌ 不对哦～答案是 '+q.answer+'，加油！';fb.className='feedback wrong bounce-in';cheerBurst();}document.getElementById('m-progress').style.width=((mState.currentIndex+1)*10)+'%';setTimeout(()=>{mState.currentIndex++;if(mState.currentIndex>=10)finishMR();else showMQ();},1200);}
+function finishMR(){mState.roundActive=false;if(mState.timerInterval)clearInterval(mState.timerInterval);const elapsed=Math.floor((Date.now()-mState.startTime)/1000);document.getElementById('m-score').textContent=mState.correct;document.getElementById('m-time').textContent=elapsed+'s';document.getElementById('m-accuracy').textContent=Math.round(mState.correct/10*100)+'%';document.getElementById('m-feedback').textContent='';document.getElementById('m-feedback').className='feedback';document.getElementById('m-answer').disabled=true;document.getElementById('m-submit-btn').disabled=true;document.getElementById('m-progress').style.width='100%';document.getElementById('m-timer').classList.remove('warning');document.getElementById('m-result-card').style.display='block';const emoji=document.getElementById('m-result-emoji'),text=document.getElementById('m-result-text');if(mState.correct===10){emoji.textContent='🏆';text.textContent='满分！口算大王！';confettiBurst();setTimeout(confettiBurst,600);}else if(mState.correct>=8){emoji.textContent='🎉';text.textContent='非常棒！继续加油！';starBurst();}else if(mState.correct>=6){emoji.textContent='😊';text.textContent='还不错，再练练会更好！';sparkleBurst();}else{emoji.textContent='💪';text.textContent='别灰心，多练习就进步！';cheerBurst();}const prev=getLocal('mental_best');if(mState.correct>prev){saveLocal('mental_best',mState.correct);document.getElementById('m-best-hint').textContent='🎊 新纪录！云端已同步～';}else{document.getElementById('m-best-hint').textContent='历史最佳：'+prev+'/10';}}
 document.addEventListener('keydown',function(e){if(e.key==='Enter'&&currentTab==='mental'&&document.getElementById('section-mental').classList.contains('active'))checkMental();});
 
 // ==================== 应用题闯关 ====================
-const wordProblems=[
-  {text:'王老师买了3盒水彩笔，每盒12支。把这些笔平均分给4个小组，每个小组分到多少支？',options:['6支','9支','12支','16支'],answer:1,solution:'先算总数量：3×12=36（支）\n再算每组：36÷4=9（支）\n答：每个小组分到9支。'},
-  {text:'一块长方形菜地，长15米，宽8米。面积是多少平方米？',options:['23平方米','46平方米','120平方米','100平方米'],answer:2,solution:'长方形面积=长×宽\n15×8=120（平方米）\n答：面积是120平方米。'},
-  {text:'小明生日6月1日，妈妈生日比小明晚25天。妈妈生日是几月几日？',options:['6月25日','6月26日','7月1日','6月24日'],answer:1,solution:'6月1日+25天=6月26日\n（数一数：2日...26日共25天后）\n答：6月26日。'},
-  {text:'图书馆有故事书240本，放6个书架，每架5层。每层放多少本？',options:['6本','7本','8本','10本'],answer:2,solution:'每架：240÷6=40（本）\n每层：40÷5=8（本）\n答：每层放8本。'},
-  {text:'一支钢笔8.5元，一个笔记本3.2元。一共多少钱？',options:['11.7元','11.3元','5.3元','12.7元'],answer:0,solution:'8.5+3.2=11.7（元）\n小数点对齐计算\n答：一共11.7元。'},
-  {text:'每箱苹果25千克，运了38箱。一共运了多少千克？',options:['850千克','900千克','950千克','1000千克'],answer:2,solution:'25×38=25×40−25×2\n=1000−50=950（千克）\n答：一共950千克。'},
-  {text:'正方形镜子边长9分米。面积多少平方分米？合多少平方厘米？',options:['81dm²，810cm²','81dm²，8100cm²','18dm²，1800cm²','36dm²，3600cm²'],answer:1,solution:'面积=9×9=81（平方分米）\n1平方分米=100平方厘米\n81×100=8100（平方厘米）'},
-  {text:'2024年是闰年，全年多少天？2月多少天？',options:['365天，28天','365天，29天','366天，29天','366天，28天'],answer:2,solution:'闰年2月有29天。\n全年366天。\n歌诀：四年一闰，百年不闰，四百年再闰。'},
-  {text:'积木96盒，每6盒装一箱。卖出8箱，还剩多少盒？',options:['42盒','48盒','52盒','56盒'],answer:1,solution:'总箱数：96÷6=16（箱）\n剩余箱数：16−8=8（箱）\n剩余盒数：8×6=48（盒）'},
-  {text:'小红有50元，书包28.6元，还剩多少钱？',options:['21.4元','22.4元','21.6元','20.4元'],answer:0,solution:'50−28.6=21.4（元）\n列竖式：50.0−28.6=21.4\n答：还剩21.4元。'},
-  {text:'长方形周长24cm，长8cm。宽多少？面积多少？',options:['宽4cm，面积32cm²','宽3cm，面积24cm²','宽5cm，面积40cm²','宽4cm，面积28cm²'],answer:0,solution:'长+宽=24÷2=12\n宽=12−8=4（厘米）\n面积=8×4=32（平方厘米）'},
-  {text:'三年级168人，每4人一组。已分25组，还能分几组？',options:['15组','16组','17组','18组'],answer:2,solution:'总分：168÷4=42（组）\n剩余：42−25=17（组）'},
-  {text:'操场长60m宽40m，跑2圈共多少米？',options:['200米','300米','400米','500米'],answer:2,solution:'一圈：(60+40)×2=200（米）\n两圈：200×2=400（米）'},
-  {text:'糖果5.8元，饼干4.5元。糖果比饼干贵多少？',options:['1.3元','1.2元','2.3元','0.9元'],answer:0,solution:'5.8−4.5=1.3（元）\n答：贵1.3元。'},
-  {text:'上午8:30到下午2:30，经过几小时？',options:['5小时','6小时','7小时','8小时'],answer:1,solution:'下午2:30=14:30\n14:30−8:30=6（小时）'},
-];
-
-let wState={usedIndices:[],correctCount:0,currentAnswer:-1,answered:false};
-
-function nextWordProblem(){
-  document.getElementById('w-feedback').textContent='';document.getElementById('w-feedback').className='feedback';
-  document.getElementById('w-solution').classList.remove('show');document.getElementById('w-solution').textContent='';
-  document.getElementById('w-next-btn').textContent='⏭ 再来一题';
-  const opts=document.getElementById('w-options').children;
-  for(let o of opts){o.className='option-btn';o.disabled=false;}
-  if(wState.usedIndices.length>=wordProblems.length)wState.usedIndices=[];
-  let idx;do{idx=Math.random()*wordProblems.length|0;}while(wState.usedIndices.includes(idx));
-  wState.usedIndices.push(idx);const p=wordProblems[idx];
-  wState.currentAnswer=p.answer;wState.answered=false;
-  document.getElementById('w-problem-text').textContent=p.text;
-  const labels=['A','B','C','D'];
-  for(let i=0;i<4;i++){opts[i].textContent=labels[i]+'. '+p.options[i];opts[i].onclick=function(){answerWord(i,p);};}
-  document.getElementById('w-problem-text').classList.add('bounce-in');
-  setTimeout(()=>document.getElementById('w-problem-text').classList.remove('bounce-in'),500);
-}
-
-function answerWord(choice,problem){
-  if(wState.answered)return;wState.answered=true;
-  const opts=document.getElementById('w-options').children;
-  for(let o of opts)o.disabled=true;
-  const fb=document.getElementById('w-feedback'),sol=document.getElementById('w-solution');
-  if(choice===problem.answer){
-    wState.correctCount++;opts[choice].classList.add('correct-choice');
-    fb.textContent='✅ 回答正确！你真聪明！';fb.className='feedback correct bounce-in';starBurst();
-  }else{
-    opts[choice].classList.add('wrong-choice');opts[problem.answer].classList.add('correct-choice');
-    fb.textContent='❌ 不对哦～看看正确答案吧！';fb.className='feedback wrong bounce-in';cheerBurst();
-  }
-  sol.textContent='💡 解题思路：\n'+problem.solution;sol.classList.add('show','bounce-in');
-  document.getElementById('w-correct-count').textContent=wState.correctCount;
-  saveLocal('word_correct',wState.correctCount);
-}
+const wordProblems=[{text:'王老师买了3盒水彩笔，每盒12支。把这些笔平均分给4个小组，每个小组分到多少支？',options:['6支','9支','12支','16支'],answer:1,solution:'总数量：3×12=36（支）\n每组：36÷4=9（支）'},{text:'一块长方形菜地，长15米，宽8米。面积是多少平方米？',options:['23平方米','46平方米','120平方米','100平方米'],answer:2,solution:'面积=长×宽\n15×8=120（平方米）'},{text:'小明生日6月1日，妈妈生日比小明晚25天。妈妈生日是几月几日？',options:['6月25日','6月26日','7月1日','6月24日'],answer:1,solution:'6月1日+25天=6月26日'},{text:'图书馆有故事书240本，放6个书架，每架5层。每层放多少本？',options:['6本','7本','8本','10本'],answer:2,solution:'每架：240÷6=40（本）\n每层：40÷5=8（本）'},{text:'一支钢笔8.5元，一个笔记本3.2元。一共多少钱？',options:['11.7元','11.3元','5.3元','12.7元'],answer:0,solution:'8.5+3.2=11.7（元）\n小数点对齐计算'},{text:'每箱苹果25千克，运了38箱。一共运了多少千克？',options:['850千克','900千克','950千克','1000千克'],answer:2,solution:'25×38=950（千克）'},{text:'正方形镜子边长9分米。面积多少平方分米？合多少平方厘米？',options:['81dm²，810cm²','81dm²，8100cm²','18dm²，1800cm²','36dm²，3600cm²'],answer:1,solution:'面积=9×9=81dm²\n1dm²=100cm²→8100cm²'},{text:'2024年是闰年，全年多少天？2月多少天？',options:['365天，28天','365天，29天','366天，29天','366天，28天'],answer:2,solution:'闰年2月有29天，全年366天'},{text:'积木96盒，每6盒装一箱。卖出8箱，还剩多少盒？',options:['42盒','48盒','52盒','56盒'],answer:1,solution:'总箱数：96÷6=16\n剩余：16−8=8箱→8×6=48盒'},{text:'小红有50元，书包28.6元，还剩多少钱？',options:['21.4元','22.4元','21.6元','20.4元'],answer:0,solution:'50−28.6=21.4（元）'},{text:'长方形周长24cm，长8cm。宽多少？面积多少？',options:['宽4cm，面积32cm²','宽3cm，面积24cm²','宽5cm，面积40cm²','宽4cm，面积28cm²'],answer:0,solution:'长+宽=12→宽=4cm\n面积=8×4=32cm²'},{text:'三年级168人，每4人一组。已分25组，还能分几组？',options:['15组','16组','17组','18组'],answer:2,solution:'总分：168÷4=42组\n剩余：42−25=17组'},{text:'操场长60m宽40m，跑2圈共多少米？',options:['200米','300米','400米','500米'],answer:2,solution:'一圈：(60+40)×2=200m\n两圈：400m'},{text:'糖果5.8元，饼干4.5元。糖果比饼干贵多少？',options:['1.3元','1.2元','2.3元','0.9元'],answer:0,solution:'5.8−4.5=1.3（元）'},{text:'上午8:30到下午2:30，经过几小时？',options:['5小时','6小时','7小时','8小时'],answer:1,solution:'14:30−8:30=6（小时）'}];
+let wState={usedIndices:[],correctCount:0,currentAnswer:-1,answered:false,currentProblem:null};
+function nextWordProblem(){document.getElementById('w-feedback').textContent='';document.getElementById('w-feedback').className='feedback';document.getElementById('w-solution').classList.remove('show');document.getElementById('w-solution').textContent='';document.getElementById('w-next-btn').textContent='⏭ 再来一题';const opts=document.getElementById('w-options').children;for(let o of opts){o.className='option-btn';o.disabled=false;}if(wState.usedIndices.length>=wordProblems.length)wState.usedIndices=[];let idx;do{idx=Math.random()*wordProblems.length|0;}while(wState.usedIndices.includes(idx));wState.usedIndices.push(idx);const p=wordProblems[idx];wState.currentProblem=p;wState.currentAnswer=p.answer;wState.answered=false;document.getElementById('w-problem-text').textContent=p.text;const labels=['A','B','C','D'];for(let i=0;i<4;i++){opts[i].textContent=labels[i]+'. '+p.options[i];opts[i].onclick=function(){answerWord(i,p);};}document.getElementById('w-problem-text').classList.add('bounce-in');setTimeout(()=>document.getElementById('w-problem-text').classList.remove('bounce-in'),500);}
+function answerWord(choice,problem){if(wState.answered)return;wState.answered=true;const opts=document.getElementById('w-options').children;for(let o of opts)o.disabled=true;const fb=document.getElementById('w-feedback'),sol=document.getElementById('w-solution');const correct=choice===problem.answer;logActivity('word',problem.text.slice(0,40),problem.options[choice],problem.options[problem.answer],correct);if(correct){wState.correctCount++;opts[choice].classList.add('correct-choice');fb.textContent='✅ 回答正确！你真聪明！';fb.className='feedback correct bounce-in';starBurst();}else{opts[choice].classList.add('wrong-choice');opts[problem.answer].classList.add('correct-choice');fb.textContent='❌ 不对哦～看看正确答案吧！';fb.className='feedback wrong bounce-in';cheerBurst();}sol.textContent='💡 解题思路：\n'+problem.solution;sol.classList.add('show','bounce-in');document.getElementById('w-correct-count').textContent=wState.correctCount;saveLocal('word_correct',wState.correctCount);}
 document.getElementById('w-next-btn').addEventListener('click',nextWordProblem);
 
 // ==================== 几何魔法屋 ====================
-let gState={correctCount:0,currentAnswer:-1,answered:false};
-
-const geoProblems=[
-  {type:'rect',width:8,height:5,unit:'cm',question:'这个长方形的面积是多少？',options:['13平方厘米','40平方厘米','26平方厘米','80平方厘米'],answer:1,solution:'面积=长×宽=8×5=40（平方厘米）'},
-  {type:'rect',width:12,height:3,unit:'cm',question:'这个长方形的周长是多少？',options:['36厘米','15厘米','30厘米','18厘米'],answer:2,solution:'周长=(长+宽)×2=(12+3)×2=30（厘米）'},
-  {type:'square',side:7,unit:'cm',question:'这个正方形的面积是多少？',options:['28cm²','14cm²','49cm²','21cm²'],answer:2,solution:'面积=7×7=49（平方厘米）'},
-  {type:'square',side:6,unit:'dm',question:'这个正方形的周长是多少？',options:['24分米','36平方分米','12分米','24平方分米'],answer:0,solution:'周长=6×4=24（分米）\n⚠️周长是长度，不是面积！'},
-  {type:'rect',width:10,height:10,unit:'cm',question:'这个图形叫什么？周长是多少？',options:['长方形，40cm','正方形，40cm','长方形，100cm²','正方形，100cm²'],answer:1,solution:'长=宽=10cm→正方形\n周长=10×4=40（厘米）'},
-  {type:'rect',width:9,height:4,unit:'dm',question:'长方形面积合多少平方厘米？',options:['36cm²','360cm²','3600cm²','13cm²'],answer:2,solution:'面积=36dm²\n1dm²=100cm²→3600cm²'},
-  {type:'square',side:5,unit:'cm',question:'分成1cm²小正方形，能分几个？',options:['20个','25个','10个','15个'],answer:1,solution:'面积=25cm²\n每小格1cm²→共25个'},
-  {type:'rect',width:15,height:6,unit:'m',question:'长是宽的几倍？周长是多少？',options:['2倍，42m','2.5倍，21m','2.5倍，42m','3倍，42m'],answer:2,solution:'15÷6=2.5（倍）\n周长=(15+6)×2=42（米）'},
-];
-
-function drawGeoShape(problem){
-  const canvas=document.getElementById('geo-canvas');
-  const ctx=canvas.getContext('2d');
-  const w=canvas.width,h=canvas.height;
-  ctx.clearRect(0,0,w,h);
-  ctx.strokeStyle='#F5E6F0';ctx.lineWidth=0.5;
-  for(let x=0;x<w;x+=20){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
-  for(let y=0;y<h;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
-  const scale=problem.type==='square'?Math.min(120/problem.side,120/problem.side):Math.min(200/problem.width,120/problem.height);
-  let rw,rh,rx,ry;
-  if(problem.type==='square'){const s=problem.side*scale;rw=s;rh=s;rx=(w-s)/2;ry=(h-s)/2;}
-  else{rw=problem.width*scale;rh=problem.height*scale;rx=(w-rw)/2;ry=(h-rh)/2;}
-  ctx.fillStyle='rgba(199,125,255,0.12)';ctx.fillRect(rx+4,ry+4,rw,rh);
-  const grad=ctx.createLinearGradient(rx,ry,rx+rw,ry+rh);
-  grad.addColorStop(0,'#E8D5F5');grad.addColorStop(1,'#D1C4E9');
-  ctx.fillStyle=grad;ctx.fillRect(rx,ry,rw,rh);
-  ctx.strokeStyle='#7C4DFF';ctx.lineWidth=3;ctx.strokeRect(rx,ry,rw,rh);
-  [[rx,ry],[rx+rw,ry],[rx,ry+rh],[rx+rw,ry+rh]].forEach(([cx,cy])=>{ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fillStyle='#7C4DFF';ctx.fill();});
-  ctx.fillStyle='#4A3048';ctx.font='bold 16px "PingFang SC","Microsoft YaHei",sans-serif';ctx.textAlign='center';
-  if(problem.type==='square'){ctx.fillText(problem.side+problem.unit,rx+rw/2,ry-10);ctx.save();ctx.translate(rx+rw+18,ry+rh/2);ctx.fillText(problem.side+problem.unit,0,0);ctx.restore();}
-  else{ctx.fillText(problem.width+problem.unit,rx+rw/2,ry+rh+22);ctx.save();ctx.translate(rx+rw+20,ry+rh/2);ctx.fillText(problem.height+problem.unit,0,0);ctx.restore();}
-  const ms=14;ctx.strokeStyle='#FF6B9D';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(rx+ms,ry);ctx.lineTo(rx+ms,ry+ms);ctx.lineTo(rx,ry+ms);ctx.stroke();
-}
-
-function nextGeoProblem(){
-  document.getElementById('geo-feedback').textContent='';document.getElementById('geo-feedback').className='feedback';
-  document.getElementById('geo-solution').classList.remove('show');document.getElementById('geo-solution').textContent='';
-  document.getElementById('geo-next-btn').textContent='⏭ 下一题';
-  const opts=document.getElementById('geo-options').children;
-  for(let o of opts){o.className='option-btn';o.disabled=false;}
-  const idx=Math.random()*geoProblems.length|0;const problem=geoProblems[idx];
-  gState.currentAnswer=problem.answer;gState.answered=false;
-  document.getElementById('geo-question-text').textContent=problem.question;
-  document.getElementById('geo-question-text').classList.add('bounce-in');
-  setTimeout(()=>document.getElementById('geo-question-text').classList.remove('bounce-in'),500);
-  const labels=['A','B','C','D'];
-  for(let i=0;i<4;i++){opts[i].textContent=labels[i]+'. '+problem.options[i];opts[i].onclick=function(){answerGeo(i,problem);};}
-  drawGeoShape(problem);
-}
-
-function answerGeo(choice,problem){
-  if(gState.answered)return;gState.answered=true;
-  const opts=document.getElementById('geo-options').children;
-  for(let o of opts)o.disabled=true;
-  const fb=document.getElementById('geo-feedback'),sol=document.getElementById('geo-solution');
-  if(choice===problem.answer){
-    gState.correctCount++;opts[choice].classList.add('correct-choice');
-    fb.textContent='✅ 答对了！几何小天才！';fb.className='feedback correct bounce-in';sparkleBurst();
-  }else{
-    opts[choice].classList.add('wrong-choice');opts[problem.answer].classList.add('correct-choice');
-    fb.textContent='❌ 再想想看哦～';fb.className='feedback wrong bounce-in';cheerBurst();
-  }
-  sol.textContent='💡 '+problem.solution;sol.classList.add('show','bounce-in');
-  document.getElementById('g-correct-count').textContent=gState.correctCount;
-  saveLocal('geo_correct',gState.correctCount);
-}
+let gState={correctCount:0,currentAnswer:-1,answered:false,currentProblem:null};
+const geoProblems=[{type:'rect',width:8,height:5,unit:'cm',question:'这个长方形的面积是多少？',options:['13平方厘米','40平方厘米','26平方厘米','80平方厘米'],answer:1,solution:'面积=8×5=40（平方厘米）'},{type:'rect',width:12,height:3,unit:'cm',question:'这个长方形的周长是多少？',options:['36厘米','15厘米','30厘米','18厘米'],answer:2,solution:'周长=(12+3)×2=30（厘米）'},{type:'square',side:7,unit:'cm',question:'这个正方形的面积是多少？',options:['28cm²','14cm²','49cm²','21cm²'],answer:2,solution:'面积=7×7=49（平方厘米）'},{type:'square',side:6,unit:'dm',question:'这个正方形的周长是多少？',options:['24分米','36平方分米','12分米','24平方分米'],answer:0,solution:'周长=6×4=24（分米）\n⚠️周长是长度，不是面积！'},{type:'rect',width:10,height:10,unit:'cm',question:'这个图形叫什么？周长是多少？',options:['长方形，40cm','正方形，40cm','长方形，100cm²','正方形，100cm²'],answer:1,solution:'长=宽=10cm→正方形\n周长=10×4=40（厘米）'},{type:'rect',width:9,height:4,unit:'dm',question:'长方形面积合多少平方厘米？',options:['36cm²','360cm²','3600cm²','13cm²'],answer:2,solution:'面积=36dm²\n1dm²=100cm²→3600cm²'},{type:'square',side:5,unit:'cm',question:'分成1cm²小正方形，能分几个？',options:['20个','25个','10个','15个'],answer:1,solution:'面积=25cm²\n每小格1cm²→共25个'},{type:'rect',width:15,height:6,unit:'m',question:'长是宽的几倍？周长是多少？',options:['2倍，42m','2.5倍，21m','2.5倍，42m','3倍，42m'],answer:2,solution:'15÷6=2.5（倍）\n周长=(15+6)×2=42（米）'}];
+function drawGeoShape(problem){const canvas=document.getElementById('geo-canvas');const ctx=canvas.getContext('2d');const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.strokeStyle='#F5E6F0';ctx.lineWidth=0.5;for(let x=0;x<w;x+=20){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}for(let y=0;y<h;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}const scale=problem.type==='square'?Math.min(120/problem.side,120/problem.side):Math.min(200/problem.width,120/problem.height);let rw,rh,rx,ry;if(problem.type==='square'){const s=problem.side*scale;rw=s;rh=s;rx=(w-s)/2;ry=(h-s)/2;}else{rw=problem.width*scale;rh=problem.height*scale;rx=(w-rw)/2;ry=(h-rh)/2;}ctx.fillStyle='rgba(199,125,255,0.12)';ctx.fillRect(rx+4,ry+4,rw,rh);const grad=ctx.createLinearGradient(rx,ry,rx+rw,ry+rh);grad.addColorStop(0,'#E8D5F5');grad.addColorStop(1,'#D1C4E9');ctx.fillStyle=grad;ctx.fillRect(rx,ry,rw,rh);ctx.strokeStyle='#7C4DFF';ctx.lineWidth=3;ctx.strokeRect(rx,ry,rw,rh);[[rx,ry],[rx+rw,ry],[rx,ry+rh],[rx+rw,ry+rh]].forEach(([cx,cy])=>{ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fillStyle='#7C4DFF';ctx.fill();});ctx.fillStyle='#4A3048';ctx.font='bold 16px "PingFang SC","Microsoft YaHei",sans-serif';ctx.textAlign='center';if(problem.type==='square'){ctx.fillText(problem.side+problem.unit,rx+rw/2,ry-10);ctx.save();ctx.translate(rx+rw+18,ry+rh/2);ctx.fillText(problem.side+problem.unit,0,0);ctx.restore();}else{ctx.fillText(problem.width+problem.unit,rx+rw/2,ry+rh+22);ctx.save();ctx.translate(rx+rw+20,ry+rh/2);ctx.fillText(problem.height+problem.unit,0,0);ctx.restore();}const ms=14;ctx.strokeStyle='#FF6B9D';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(rx+ms,ry);ctx.lineTo(rx+ms,ry+ms);ctx.lineTo(rx,ry+ms);ctx.stroke();}
+function nextGeoProblem(){document.getElementById('geo-feedback').textContent='';document.getElementById('geo-feedback').className='feedback';document.getElementById('geo-solution').classList.remove('show');document.getElementById('geo-solution').textContent='';document.getElementById('geo-next-btn').textContent='⏭ 下一题';const opts=document.getElementById('geo-options').children;for(let o of opts){o.className='option-btn';o.disabled=false;}const idx=Math.random()*geoProblems.length|0;const problem=geoProblems[idx];gState.currentProblem=problem;gState.currentAnswer=problem.answer;gState.answered=false;document.getElementById('geo-question-text').textContent=problem.question;document.getElementById('geo-question-text').classList.add('bounce-in');setTimeout(()=>document.getElementById('geo-question-text').classList.remove('bounce-in'),500);const labels=['A','B','C','D'];for(let i=0;i<4;i++){opts[i].textContent=labels[i]+'. '+problem.options[i];opts[i].onclick=function(){answerGeo(i,problem);};}drawGeoShape(problem);}
+function answerGeo(choice,problem){if(gState.answered)return;gState.answered=true;const opts=document.getElementById('geo-options').children;for(let o of opts)o.disabled=true;const fb=document.getElementById('geo-feedback'),sol=document.getElementById('geo-solution');const correct=choice===problem.answer;logActivity('geo',problem.question,problem.options[choice],problem.options[problem.answer],correct);if(correct){gState.correctCount++;opts[choice].classList.add('correct-choice');fb.textContent='✅ 答对了！几何小天才！';fb.className='feedback correct bounce-in';sparkleBurst();}else{opts[choice].classList.add('wrong-choice');opts[problem.answer].classList.add('correct-choice');fb.textContent='❌ 再想想看哦～';fb.className='feedback wrong bounce-in';cheerBurst();}sol.textContent='💡 '+problem.solution;sol.classList.add('show','bounce-in');document.getElementById('g-correct-count').textContent=gState.correctCount;saveLocal('geo_correct',gState.correctCount);}
 document.getElementById('geo-next-btn').addEventListener('click',nextGeoProblem);
-
-console.log('🌟 三年级数学乐园已启动！云端数据库已连接 ✅');
+console.log('🌟 数学乐园已就绪 | 👩‍🏫 管理员入口：连续点击"三年级下册"5次 或 URL加 ?admin');
 </script>
 </body>
 </html>
