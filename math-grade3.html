@@ -868,6 +868,10 @@ const Geo={
 U.el('g-next').addEventListener('click',()=>Geo.next());
 
 console.log('🦊 数学乐园 v'+C.V+' | 全新UI：底栏导航 · 模块卡片 · 多彩游戏化');
+
+// 暴露全局变量供 onclick 调用（const 不会自动挂到 window）
+window.Login=Login;window.Mental=Mental;window.Word=Word;window.Geo=Geo;window.Admin=Admin;
+window.U=U;window.D=D;window.C=C;window.S=S;window.L=L;
 </script>
 </body>
 </html>
